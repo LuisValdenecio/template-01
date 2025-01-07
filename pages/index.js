@@ -15,7 +15,9 @@ export default function Home() {
       <CTA />
       <Testimonial />
       <Pricing />
-      <FAQs />
+      {process.env.NEXT_PUBLIC_FAQ_SHOW === "1" && (
+        <FAQs />
+      )}
     </>
   );
 }

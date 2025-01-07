@@ -3,28 +3,28 @@ import SectionWrapper from "@/components/SectionWrapper"
 
 const faqsList = [
     {
-        q: "What is an email marketing tool?",
-        a: "An email marketing tool is a software application that allows you to create, send, and manage email campaigns. It helps you to create professional-looking emails, track their performance, and analyze the results.",
+        q: process.env.NEXT_PUBLIC_FAQ_QUESTION_ROW01_COL01,
+        a: process.env.NEXT_PUBLIC_FAQ_ANSWER_ROW01_COL01,
     },
     {
-        q: "What are the benefits of using an email marketing tool?",
-        a: "An email marketing tool can help you reach a larger audience, increase engagement with your customers, and generate more leads.",
+        q: process.env.NEXT_PUBLIC_FAQ_QUESTION_ROW01_COL02,
+        a: process.env.NEXT_PUBLIC_FAQ_ANSWER_ROW01_COL02,
     },
     {
-        q: "How do I get started with an email marketing tool?",
-        a: "To get started with an email marketing tool, you will need to sign up for an account with our provider, Once you have signed up for an account, you can start.",
+        q: process.env.NEXT_PUBLIC_FAQ_QUESTION_ROW01_COL03,
+        a: process.env.NEXT_PUBLIC_FAQ_ANSWER_ROW01_COL03,
     },
     {
-        q: "How does an AI-powered email marketing tool work?",
-        a: "Social media is a great place for businesses because it has the An AI-powered email marketing tool works by analyzing customer data to identify patterns and trends in order to create more targeted campaigns.",
+        q: process.env.NEXT_PUBLIC_FAQ_QUESTION_ROW02_COL01,
+        a: process.env.NEXT_PUBLIC_FAQ_ANSWER_ROW02_COL01,
     },
     {
-        q: "What are the benefits of using an AI-powered email marketing tool?",
-        a: "AI-powered email marketing tools can help marketers save time and money by automating tasks such as segmentation, personalization, content optimization, and more.",
+        q: process.env.NEXT_PUBLIC_FAQ_QUESTION_ROW02_COL02,
+        a: process.env.NEXT_PUBLIC_FAQ_ANSWER_ROW02_COL02,
     },
     {
-        q: "Can I sell my digital products using Mailgo?",
-        a: "Of course you can market and sell your digital products and subscriptions with Mailgo to drive higher conversions and save big on fees.",
+        q: process.env.NEXT_PUBLIC_FAQ_QUESTION_ROW02_COL03,
+        a: process.env.NEXT_PUBLIC_FAQ_ANSWER_ROW02_COL03,
     }
 ]
 
@@ -33,10 +33,10 @@ const FAQs = () => (
         <div className="custom-screen text-gray-300">
             <div className="max-w-xl text-center xl:mx-auto">
                 <h2 className="text-gray-50 text-3xl font-extrabold sm:text-4xl">
-                    Everything you need to know
+                    {process.env.NEXT_PUBLIC_FAQ_MAIN_TITLE}
                 </h2>
                 <p className="mt-3">
-                    Here are the most questions people always ask about.
+                    {process.env.NEXT_PUBLIC_FAQ_SECONDARY_TITLE}
                 </p>
             </div>
             <div className='mt-12'>

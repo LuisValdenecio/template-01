@@ -7,27 +7,36 @@ const VisualFeatures = () => {
 
     const features = [
         {
-            title: "Send thousands of emails",
-            desc: "Send thousands of emails quickly and easily. You can customize the content of each email",
+            title: process.env.NEXT_PUBLIC_FEATURE_01_TITLE,
+            desc: process.env.NEXT_PUBLIC_FEATURE_01_DESCRIPTION,
             img: Feature1
         },
         {
-            title: "Write your email content using AI",
-            desc: "AI-powered email content writing is the perfect solution for busy professionals who need to quickly create engaging emails.",
+            title: process.env.NEXT_PUBLIC_FEATURE_02_TITLE,
+            desc: process.env.NEXT_PUBLIC_FEATURE_02_DESCRIPTION,
             img: Feature2
         },
     ]
     return (
         <SectionWrapper>
             <div className="custom-screen text-gray-300">
-                <div className="max-w-xl mx-auto text-center">
-                    <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
-                        Take your email marketing to the next level with Mailgo
-                    </h2>
-                    <p className="mt-3">
-                        With Mailgo's powerful features, you can easily create and send beautiful emails that will engage your customers and drive more sales.
-                    </p>
-                </div>
+                {
+                    (process.env.NEXT_PUBLIC_SECONDARY_TITLE_SHOW === "1" ||
+                    process.env.NEXT_PUBLIC_SECONDARY_DESCRIPTION_SHOW === "1") && (
+                        <div className="max-w-xl mx-auto text-center">
+                            {process.env.NEXT_PUBLIC_SECONDARY_TITLE_SHOW === "1" && (
+                                <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
+                                    {process.env.NEXT_PUBLIC_SECONDARY_TITLE}
+                                </h2>
+                            )}
+                            {process.env.NEXT_PUBLIC_SECONDARY_DESCRIPTION_SHOW === "1" && (
+                                <p className="mt-3">
+                                    {process.env.NEXT_PUBLIC_SECONDARY_DESCRIPTION}
+                                </p>
+                            )}
+                        </div>
+                    )
+                }
                 <div className="mt-12">
                     <ul className="space-y-8 gap-x-6 sm:flex sm:space-y-0">
                         {
