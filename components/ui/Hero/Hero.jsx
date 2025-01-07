@@ -3,6 +3,29 @@ import Image from "next/image"
 import NavLink from "../NavLink"
 import HeroImg from "@/public/images/hero.svg"
 import LayoutEffect from "@/components/LayoutEffect"
+import clsx from "clsx"
+
+const theme_selector = (theme) => {
+    switch (theme) {
+        case "purple":
+            return {
+                hex : "#7C3AED",
+                rgba : "rgba(152, 103, 240, 0.984375)"
+            }
+        case "green":
+            return {
+                hex : "#10B981",
+                rgba : "rgba(16, 185, 129, 1)"
+            }
+        case "blue":
+            return {
+                hex : "#3b82f6",
+                rgba : "rgba(59, 130, 246, 1)"
+            }
+        default:
+            return "bg-purple-600 hover:bg-purple-500 active:bg-purple-700"
+    }
+}
 
 const Hero = () => (
     <section>
@@ -34,7 +57,13 @@ const Hero = () => (
                             <div className="flex justify-center font-medium text-sm">
                                 <NavLink
                                     href="/#pricing"
-                                    className="flex items-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 "
+                                    className={clsx("flex items-center text-white", {
+                                        "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                        "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                        "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
+
+                                    })}
+                                    
                                 >
                                     {process.env.NEXT_PUBLIC_FIRST_BUTTON_LABEL}
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
@@ -46,7 +75,11 @@ const Hero = () => (
                     </div>
                     {
                         process.env.NEXT_PUBLIC_HERO_IMAGE_SHOW === "1" && (
-                            <GradientWrapper className="mt-16 sm:mt-28" wrapperClassName="max-w-3xl h-[250px] top-12 inset-0 sm:h-[300px] lg:h-[650px]">
+                            <GradientWrapper 
+                                className="mt-16 sm:mt-28" 
+                                hex={theme_selector(process.env.NEXT_PUBLIC_TEMPLATE_THEME).hex}
+                                rgba={theme_selector(process.env.NEXT_PUBLIC_TEMPLATE_THEME).rgba}
+                                wrapperClassName="max-w-3xl h-[250px] top-12 inset-0 sm:h-[300px] lg:h-[650px]">
                                 <Image
                                     src={HeroImg}
                                     className="shadow-lg rounded-2xl"

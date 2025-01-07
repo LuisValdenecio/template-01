@@ -3,6 +3,7 @@ import Image from "next/image"
 import NavLink from "../NavLink"
 import bgPattern from "@/public/images/bg-pattern.webp"
 import LayoutEffect from "@/components/LayoutEffect"
+import clsx from "clsx"
 
 const CTA = () => (
     <section>
@@ -30,7 +31,11 @@ const CTA = () => (
                             <div className="mt-5 flex justify-center font-medium text-sm">
                                 <NavLink
                                     href="/#pricing"
-                                    className="flex items-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 "
+                                    className={clsx("flex items-center text-white", {
+                                        "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                        "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                        "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green"
+                                    })}
                                 >
                                     {process.env.NEXT_PUBLIC_CTA_BUTTON_LABEL}
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">

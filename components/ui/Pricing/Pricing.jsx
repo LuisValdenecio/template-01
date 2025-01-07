@@ -1,6 +1,7 @@
 import LayoutEffect from "@/components/LayoutEffect";
 import SectionWrapper from "@/components/SectionWrapper";
 import Button from "../Button";
+import clsx from "clsx";
 
 const Pricing = () => {
 
@@ -43,7 +44,13 @@ const Pricing = () => {
                         <div className='mt-16 justify-center gap-6 sm:grid sm:grid-cols-1 sm:space-y-0 lg:grid-cols-1'>
                             {
                                 plans.map((item, idx) => (
-                                    <div key={idx} className={`relative lg:w-1/2 sm:w-full self-auto flex-1 flex items-stretch flex-col rounded-xl border border-gray-800 mt-6 sm:mt-0 ${item.isMostPop ? "border border-purple-500" : ""}`}
+                                    <div key={idx} 
+                                        className={clsx("relative lg:w-1/2 sm:w-full self-auto flex-1 flex items-stretch flex-col rounded-xl border border-gray-800 mt-6 sm:mt-0", {
+                                            "border border-purple-500": process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                            "border border-blue-500": process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                            "border border-green-500": process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
+                                        })}
+                                        
                                         style={{
                                             backgroundImage: item.isMostPop ? mostPopPricingBg : ""
                                         }}
@@ -79,7 +86,12 @@ const Pricing = () => {
                                                 }
                                             </ul>
                                             <div className="pt-8">
-                                                <Button className={`w-full rounded-full text-white ring-offset-2 focus:ring ${item.isMostPop ? "bg-purple-600 hover:bg-purple-500 focus:bg-purple-700 ring-purple-600" : "bg-gray-800 hover:bg-gray-700 ring-gray-800"}`}>
+                                                <Button 
+                                                    className={clsx("w-full rounded-full text-white ring-offset-2 focus:ring", {
+                                                        "bg-purple-600 hover:bg-purple-500 focus:bg-purple-700 ring-purple-600" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                                        "bg-blue-600 hover:bg-blue-500 focus:bg-blue-700 ring-blue-600" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                                        "bg-green-600 hover:bg-green-500 focus:bg-green-700 ring-green-600" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
+                                                    })}>
                                                     {process.env.NEXT_PUBLIC_PRICING_BUTTON_LABEL}
                                                 </Button>
                                             </div>
