@@ -56,7 +56,7 @@ const Hero = () => (
                         {process.env.NEXT_PUBLIC_FIRST_BUTTON_LABEL_SHOW === "1" && (
                             <div className="flex justify-center font-medium text-sm">
                                 <NavLink
-                                    href="/#pricing"
+                                    href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
                                     className={clsx("flex items-center text-white", {
                                         "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
                                         "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
