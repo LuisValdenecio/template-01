@@ -81,7 +81,9 @@ const Hero = () => (
                                 rgba={theme_selector(process.env.NEXT_PUBLIC_TEMPLATE_THEME).rgba}
                                 wrapperClassName="max-w-3xl h-[250px] top-12 inset-0 sm:h-[300px] lg:h-[650px]">
                                 <Image
-                                    src={HeroImg}
+                                    width={100}
+                                    height={100}
+                                    src={process.env.NEXT_PUBLIC_HERO_IMAGE_SOURCE}
                                     className="shadow-lg rounded-2xl"
                                     alt="Mailgo"
                                 />

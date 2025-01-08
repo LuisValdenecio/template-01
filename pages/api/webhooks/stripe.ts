@@ -39,16 +39,16 @@ const handleWebhook = async (
       switch (stripeEvent.type) {
         // this is where we are going to add our logic 
         // depending on the event type
-            case 'checkout.session.completed':
+            case 'checkout.session.completed': {
                 const session = await stripe.checkout.sessions.retrieve(
-					(stripeEvent.data.object as Stripe.Checkout.Session).id,
-					{
-						expand: ["line_items"],
-					}
-				);
-				const customerDetails = session.customer_details;
+                  (stripeEvent.data.object as Stripe.Checkout.Session).id,
+                  {
+                    expand: ["line_items"],
+                  }
+                );
+				        const customerDetails = session.customer_details;
 
-				if (customerDetails?.email) {
+				        if (customerDetails?.email) {
                     await resend.emails.send({
                         from: 'template01@selfhostedebook.com',
                         to: customerDetails?.email,
@@ -57,10 +57,12 @@ const handleWebhook = async (
                     });
                 }    
 
-
                 // update your database with the subscription id or status, ...
 
                 break;
+              }
+            default:
+              console.log("this event type is not handled");
         // ...
       }
 
