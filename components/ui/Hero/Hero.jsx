@@ -1,8 +1,8 @@
-import GradientWrapper from "@/components/GradientWrapper"
+import GradientWrapper from "../../../components/GradientWrapper"
 import Image from "next/image"
 import NavLink from "../NavLink"
-import HeroImg from "@/public/images/hero.svg"
-import LayoutEffect from "@/components/LayoutEffect"
+import HeroImg from "../../../public/images/hero.svg"
+import LayoutEffect from "../../../components/LayoutEffect"
 import clsx from "clsx"
 
 const theme_selector = (theme) => {

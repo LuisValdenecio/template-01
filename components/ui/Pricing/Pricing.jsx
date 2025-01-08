@@ -1,6 +1,7 @@
-import LayoutEffect from "@/components/LayoutEffect";
-import SectionWrapper from "@/components/SectionWrapper";
+import LayoutEffect from "../../../components/LayoutEffect";
+import SectionWrapper from "../../../components/SectionWrapper";
 import Button from "../Button";
+import NavLink from "../NavLink"
 import clsx from "clsx";
 
 const Pricing = () => {
@@ -86,14 +87,17 @@ const Pricing = () => {
                                                 }
                                             </ul>
                                             <div className="pt-8">
-                                                <Button 
-                                                    className={clsx("w-full rounded-full text-white ring-offset-2 focus:ring", {
-                                                        "bg-purple-600 hover:bg-purple-500 focus:bg-purple-700 ring-purple-600" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
-                                                        "bg-blue-600 hover:bg-blue-500 focus:bg-blue-700 ring-blue-600" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
-                                                        "bg-green-600 hover:bg-green-500 focus:bg-green-700 ring-green-600" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
-                                                    })}>
-                                                    {process.env.NEXT_PUBLIC_PRICING_BUTTON_LABEL}
-                                                </Button>
+                                                <NavLink
+                                                    href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
+                                                    className={clsx("flex items-center justify-center text-white", {
+                                                        "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                                        "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                                        "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green"
+                                                    })}
+                                                >
+                                                    {process.env.NEXT_PUBLIC_CTA_BUTTON_LABEL}
+                                                </NavLink>
+                                               
                                             </div>
                                         </div>
                                     </div>

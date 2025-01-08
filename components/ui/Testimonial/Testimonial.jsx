@@ -1,13 +1,13 @@
-import SectionWrapper from "@/components/SectionWrapper"
-import GradientWrapper from "@/components/GradientWrapper"
-import user1 from "@/public/testimonial/user1.webp"
-import user2 from "@/public/testimonial/user2.webp"
-import user3 from "@/public/testimonial/user3.webp"
-import user4 from "@/public/testimonial/user4.webp"
-import user5 from "@/public/testimonial/user5.webp"
-import user6 from "@/public/testimonial/user6.webp"
+import SectionWrapper from "../../../components/SectionWrapper"
+import GradientWrapper from "../../../components/GradientWrapper"
+import user1 from "../../../public/testimonial/user1.webp"
+import user2 from "../../../public/testimonial/user2.webp"
+import user3 from "../../../public/testimonial/user3.webp"
+import user4 from "../../../public/testimonial/user4.webp"
+import user5 from "../../../public/testimonial/user5.webp"
+import user6 from "../../../public/testimonial/user6.webp"
 import Image from "next/image"
-import LayoutEffect from "@/components/LayoutEffect"
+import LayoutEffect from "../../../components/LayoutEffect"
 
 const Testimonial = () => {
 

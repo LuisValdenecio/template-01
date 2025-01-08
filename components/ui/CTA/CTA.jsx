@@ -1,8 +1,8 @@
-import GradientWrapper from "@/components/GradientWrapper"
+import GradientWrapper from "../../../components/GradientWrapper"
 import Image from "next/image"
 import NavLink from "../NavLink"
-import bgPattern from "@/public/images/bg-pattern.webp"
-import LayoutEffect from "@/components/LayoutEffect"
+import bgPattern from "../../../public/images/bg-pattern.webp"
+import LayoutEffect from "../../../components/LayoutEffect"
 import clsx from "clsx"
 
 const CTA = () => (
@@ -30,7 +30,7 @@ const CTA = () => (
                             </div>
                             <div className="mt-5 flex justify-center font-medium text-sm">
                                 <NavLink
-                                    href="/#pricing"
+                                    href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
                                     className={clsx("flex items-center text-white", {
                                         "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
                                         "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
