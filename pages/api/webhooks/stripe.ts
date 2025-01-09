@@ -53,7 +53,7 @@ const handleWebhook = async (
                         from: 'template01@selfhostedebook.com',
                         to: customerDetails?.email,
                         subject: 'Your Last purchase',
-                        react: NotionMagicLinkEmail({ loginCode : '123456' }),
+                        react: NotionMagicLinkEmail({ loginCode : process.env.NEXT_PUBLIC_PURCHASE_ASSETS_PASSWORD, assetsUrl: process.env.NEXT_PUBLIC_PURCHASE_ASSETS }),
                     });
                 }    
 

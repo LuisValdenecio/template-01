@@ -13,23 +13,25 @@ import {
   
   interface NotionMagicLinkEmailProps {
     loginCode?: string;
+    assetsUrl?: string;
   }
   
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+  const baseUrl = process.env.NEXT_PUBLIC_PURCHASE_ASSETS
+    ? `https://${process.env.NEXT_PUBLIC_PURCHASE_ASSETS}`
     : "";
   
   export const NotionMagicLinkEmail = ({
     loginCode,
+    assetsUrl
   }: NotionMagicLinkEmailProps) => (
     <Html>
       <Head />
       <Preview>Log in with this magic link</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>Login</Heading>
+          <Heading style={h1}>Thanks for Purchasing!</Heading>
           <Link
-            href="https://notion.so"
+            href={assetsUrl}
             target="_blank"
             style={{
               ...link,
@@ -37,10 +39,10 @@ import {
               marginBottom: "16px",
             }}
           >
-            Click here to log in with this magic link
+            Click here to download the ebook files
           </Link>
           <Text style={{ ...text, marginBottom: "14px" }}>
-            Or, copy and paste this temporary login code:
+            Use the code bellow to access the book files on wetransfer:
           </Text>
           <code style={code}>{loginCode}</code>
           <Text
@@ -51,7 +53,7 @@ import {
               marginBottom: "16px",
             }}
           >
-            If you didn&apos;t try to login, you can safely ignore this email.
+            If you don&apos;t recognize this message, you can safely ignore this email.
           </Text>
           <Text
             style={{
@@ -61,26 +63,7 @@ import {
               marginBottom: "38px",
             }}
           >
-            Hint: You can set a permanent password in Settings & members → My
-            account.
-          </Text>
-          <Img
-            src={`${baseUrl}/static/notion-logo.png`}
-            width="32"
-            height="32"
-            alt="Notion's Logo"
-          />
-          <Text style={footer}>
-            <Link
-              href="https://notion.so"
-              target="_blank"
-              style={{ ...link, color: "#898989" }}
-            >
-              Notion.so
-            </Link>
-            , the all-in-one-workspace
-            <br />
-            for your notes, tasks, wikis, and databases.
+            Tip: Tag this e-mail, you might need to come back to it later.
           </Text>
         </Container>
       </Body>
@@ -89,6 +72,7 @@ import {
   
   NotionMagicLinkEmail.PreviewProps = {
     loginCode: "sparo-ndigo-amurt-secan",
+    assetsUrl: process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK
   } as NotionMagicLinkEmailProps;
   
   export default NotionMagicLinkEmail;
