@@ -4,7 +4,7 @@ import Brand from "../Brand";
 const NavHeader = ({ onClick, state, menuBtnEl }) => (
     <div className="flex items-center justify-between py-5 md:block">
         <Link href="/">
-            <Brand />
+           <h1 className="text-xl text-white font-extrabold">🛠️ YourAsset</h1>
         </Link>
         <div className="md:hidden">
             <button role="button" aria-label="Open the menu" ref={menuBtnEl || null} className="text-gray-400 hover:text-gray-50"

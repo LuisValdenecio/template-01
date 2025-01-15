@@ -1,5 +1,6 @@
 import LayoutEffect from "../../../components/LayoutEffect"
 import SectionWrapper from "../../../components/SectionWrapper"
+import { Tooltip } from "flowbite-react";
 
 const faqsList = [
     {
@@ -32,12 +33,31 @@ const FAQs = () => (
     <SectionWrapper id="faqs">
         <div className="custom-screen text-gray-300">
             <div className="max-w-xl text-center xl:mx-auto">
-                <h2 className="text-gray-50 text-3xl font-extrabold sm:text-4xl">
-                    {process.env.NEXT_PUBLIC_FAQ_MAIN_TITLE}
-                </h2>
-                <p className="mt-3">
-                    {process.env.NEXT_PUBLIC_FAQ_SECONDARY_TITLE}
-                </p>
+                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                    <>
+                        <Tooltip content="NEXT_PUBLIC_FAQ_MAIN_TITLE" trigger="click">
+                            <h2 className="text-gray-50 text-3xl font-extrabold sm:text-4xl">
+                                {process.env.NEXT_PUBLIC_FAQ_MAIN_TITLE}
+                            </h2>
+                        </Tooltip>
+                        <Tooltip content="NEXT_PUBLIC_FAQ_SECONDARY_TITLE" trigger="click">
+                            <p className="mt-3">
+                                {process.env.NEXT_PUBLIC_FAQ_SECONDARY_TITLE}
+                            </p>
+                        </Tooltip>
+                    </>
+                )}    
+                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                    <>
+                        <h2 className="text-gray-50 text-3xl font-extrabold sm:text-4xl">
+                            {process.env.NEXT_PUBLIC_FAQ_MAIN_TITLE}
+                        </h2>
+                    
+                        <p className="mt-3">
+                            {process.env.NEXT_PUBLIC_FAQ_SECONDARY_TITLE}
+                        </p>
+                    </>
+                )}    
             </div>
             <div className='mt-12'>
                 <LayoutEffect
@@ -53,14 +73,55 @@ const FAQs = () => (
                                 key={idx}
                                 className="space-y-3"
                             >
-                                <summary
-                                    className="flex items-center justify-between font-semibold text-gray-100">
-                                    {item.q}
-                                </summary>
-                                <p
-                                    dangerouslySetInnerHTML={{ __html: item.a }}
-                                    className='leading-relaxed'>
-                                </p>
+                                <>
+                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                        <>
+                                            {idx <= 2 && (
+
+                                                <>
+                                                    <Tooltip content={`NEXT_PUBLIC_FAQ_QUESTION_ROW01_COL0${idx+1}`} trigger="click">
+                                                        <summary className="flex items-center justify-between font-semibold text-gray-100">
+                                                            {item.q}
+                                                        </summary>
+                                                    </Tooltip>
+                                                    <Tooltip content={`NEXT_PUBLIC_FAQ_ANSWER_ROW01_COL0${idx+1}`} trigger="click">
+                                                        <p
+                                                            dangerouslySetInnerHTML={{ __html: item.a }}
+                                                            className='leading-relaxed'>
+                                                        </p>
+                                                    </Tooltip>
+                                                </>
+                                            )}
+                                            {idx > 2 && (
+                                                <>
+                                                    <Tooltip content={`NEXT_PUBLIC_FAQ_QUESTION_ROW02_COL0${idx-2}`} trigger="click">
+                                                        <summary className="flex items-center justify-between font-semibold text-gray-100">
+                                                            {item.q}
+                                                        </summary>
+                                                    </Tooltip>
+                                                    <Tooltip content={`NEXT_PUBLIC_FAQ_ANSWER_ROW02_COL0${idx-2}`} trigger="click">
+                                                        <p
+                                                            dangerouslySetInnerHTML={{ __html: item.a }}
+                                                            className='leading-relaxed'>
+                                                        </p>
+                                                    </Tooltip>
+                                                </>
+                                            )}
+                                        </>
+                                    )}
+                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                        <>
+                                            <summary className="flex items-center justify-between font-semibold text-gray-100">
+                                                {item.q}
+                                            </summary>
+                                            <p
+                                                dangerouslySetInnerHTML={{ __html: item.a }}
+                                                className='leading-relaxed'>
+                                            </p>
+                                        </>
+                                    )}
+                                
+                                </>
                             </li>
                         ))}
                     </ul>

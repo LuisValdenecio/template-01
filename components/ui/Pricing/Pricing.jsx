@@ -3,6 +3,8 @@ import SectionWrapper from "../../../components/SectionWrapper";
 import Button from "../Button";
 import NavLink from "../NavLink"
 import clsx from "clsx";
+import { Tooltip } from "flowbite-react";
+
 
 const Pricing = () => {
 
@@ -31,9 +33,18 @@ const Pricing = () => {
             {process.env.NEXT_PUBLIC_PRICING_SHOW === "1" && (
                 <SectionWrapper id="pricing" className='custom-screen'>
                     <div className='relative max-w-xl mx-auto text-center'>
-                        <h2 className='text-gray-50 text-3xl font-semibold sm:text-4xl'>
-                            {process.env.NEXT_PUBLIC_PRICING_TITLE}
-                        </h2>
+                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                            <Tooltip content="NEXT_PUBLIC_PRICING_TITLE" trigger="click">         
+                                <h2 className='text-gray-50 text-3xl font-semibold sm:text-4xl'>
+                                    {process.env.NEXT_PUBLIC_PRICING_TITLE}
+                                </h2>
+                            </Tooltip>
+                        )}
+                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (     
+                            <h2 className='text-gray-50 text-3xl font-semibold sm:text-4xl'>
+                                {process.env.NEXT_PUBLIC_PRICING_TITLE}
+                            </h2>
+                        )}
                     </div>
                     <LayoutEffect
                         className="duration-1000 delay-300"
@@ -58,12 +69,30 @@ const Pricing = () => {
                                     >
                                         <div className="p-8 space-y-4 border-b border-gray-800 text-center">
                                             <div className='text-gray-50 text-3xl font-semibold'>
-                                                ${item.price} 
+                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                    <Tooltip content="NEXT_PUBLIC_PRICE" trigger="click">
+                                                        ${item.price} 
+                                                    </Tooltip>
+                                                )}
+                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                    <>{item.price}</> 
+                                                )}
                                             </div>
                                             {process.env.NEXT_PUBLIC_PRICING_DESCRIPTION_SHOW === "1" && (
-                                                <p className="text-gray-400">
-                                                    {item.desc}
-                                                </p>
+                                                <>
+                                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                        <Tooltip content="NEXT_PUBLIC_PRICING_DESCRIPTION" trigger="click">
+                                                            <p className="text-gray-400">
+                                                                {item.desc}
+                                                            </p>
+                                                        </Tooltip>
+                                                    )}
+                                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                        <p className="text-gray-400">
+                                                            {item.desc}
+                                                        </p>
+                                                    )}
+                                                </>
                                             )}
                                         </div>
                                         <div className="p-8">
@@ -81,23 +110,55 @@ const Pricing = () => {
                                                                     d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
                                                                     clip-rule='evenodd'></path>
                                                             </svg>
-                                                            {featureItem}
+                                                            <>
+                                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                                    <Tooltip content={`NEXT_PUBLIC_PRICING_BENEFIT0${idx+1}`} trigger="click">
+                                                                        <span className="inline-block">{featureItem}</span>
+                                                                    </Tooltip>
+                                                                )}
+                                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                                    <span className="inline-block">{featureItem}</span>
+                                                                )}
+                                                            </>
                                                         </li>
                                                     ))
                                                 }
                                             </ul>
                                             <div className="pt-8">
-                                                <NavLink
-                                                    href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
-                                                    className={clsx("flex items-center justify-center text-white", {
-                                                        "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
-                                                        "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
-                                                        "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green"
-                                                    })}
-                                                >
-                                                    {process.env.NEXT_PUBLIC_CTA_BUTTON_LABEL}
-                                                </NavLink>
-                                               
+                                                <>
+                                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                        <Tooltip content="NEXT_PUBLIC_CTA_BUTTON_LABEL">
+                                                            <NavLink
+                                                                href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
+                                                                className={clsx("flex items-center text-white justify-center", {
+                                                                    "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                                                    "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                                                    "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green"
+                                                                })}
+                                                            >
+                                                                {process.env.NEXT_PUBLIC_CTA_BUTTON_LABEL}
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                                                    <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                                                </svg>
+                                                            </NavLink>
+                                                        </Tooltip>
+                                                    )}
+                                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                        <NavLink
+                                                            href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
+                                                            className={clsx("flex items-center text-white justify-center", {
+                                                                "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                                                "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                                                "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green"
+                                                            })}
+                                                        >
+                                                            {process.env.NEXT_PUBLIC_CTA_BUTTON_LABEL}
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                                            </svg>
+                                                        </NavLink>
+                                                    )}
+                                                </>   
                                             </div>
                                         </div>
                                     </div>

@@ -3,6 +3,7 @@ import Image from "next/image"
 import NavLink from "../NavLink"
 import HeroImg from "../../../public/images/hero.svg"
 import LayoutEffect from "../../../components/LayoutEffect"
+import { Tooltip } from "flowbite-react";
 import clsx from "clsx"
 
 const theme_selector = (theme) => {
@@ -39,37 +40,83 @@ const Hero = () => (
                 <div>
                     <div className="space-y-5 max-w-3xl mx-auto text-center">
                         {process.env.NEXT_PUBLIC_MAIN_TITLE_SHOW === "1" && (
-                            <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-r font-extrabold mx-auto sm:text-6xl"
-                                style={{
-                                    backgroundImage: "linear-gradient(179.1deg, #FFFFFF 0.77%, rgba(255, 255, 255, 0) 182.09%)"
-                                }}
-                            >
-                                {process.env.NEXT_PUBLIC_MAIN_TITLE}
-                            </h1>
+                             <>
+                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                    <Tooltip content="NEXT_PUBLIC_MAIN_TITLE" trigger="click">
+                                        <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-r font-extrabold mx-auto sm:text-6xl"
+                                            style={{
+                                                backgroundImage: "linear-gradient(179.1deg, #FFFFFF 0.77%, rgba(255, 255, 255, 0) 182.09%)"
+                                            }}
+                                        >
+                                            {process.env.NEXT_PUBLIC_MAIN_TITLE}
+                                        </h1>
+                                    </Tooltip>
+                                )} 
+                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                    <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-r font-extrabold mx-auto sm:text-6xl"
+                                        style={{
+                                            backgroundImage: "linear-gradient(179.1deg, #FFFFFF 0.77%, rgba(255, 255, 255, 0) 182.09%)"
+                                        }}
+                                    >
+                                        {process.env.NEXT_PUBLIC_MAIN_TITLE}
+                                    </h1>
+                                )} 
+                             </>
                         )}
 
                         {process.env.NEXT_PUBLIC_MAIN_DESCRIPTION_SHOW === "1" && (
-                            <p className="max-w-xl mx-auto text-gray-300">
-                                {process.env.NEXT_PUBLIC_MAIN_DESCRIPTION}
-                            </p>
+                            <>
+                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                    <Tooltip content="NEXT_PUBLIC_MAIN_DESCRIPTION">
+                                        <p className="max-w-xl text-xl mx-auto text-gray-300">
+                                            {process.env.NEXT_PUBLIC_MAIN_DESCRIPTION}
+                                        </p>
+                                    </Tooltip>
+                                )}
+                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                    <p className="max-w-xl text-xl mx-auto text-gray-300">
+                                        {process.env.NEXT_PUBLIC_MAIN_DESCRIPTION}
+                                    </p>
+                                )}
+                            </>
                         )}
                         {process.env.NEXT_PUBLIC_FIRST_BUTTON_LABEL_SHOW === "1" && (
                             <div className="flex justify-center font-medium text-sm">
-                                <NavLink
-                                    href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
-                                    className={clsx("flex items-center text-white", {
-                                        "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
-                                        "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
-                                        "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
+                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                    <Tooltip content="NEXT_PUBLIC_FIRST_BUTTON_LABEL">
+                                        <NavLink
+                                            href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
+                                            className={clsx("flex items-center text-white", {
+                                                "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                                "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                                "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
 
-                                    })}
-                                    
-                                >
-                                    {process.env.NEXT_PUBLIC_FIRST_BUTTON_LABEL}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                        <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-                                    </svg>
-                                </NavLink>
+                                            })}
+                                            
+                                        >
+                                            {process.env.NEXT_PUBLIC_FIRST_BUTTON_LABEL}
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                            </svg>
+                                        </NavLink>
+                                    </Tooltip>
+                                )}
+                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                    <NavLink
+                                        href={process.env.NEXT_PUBLIC_STRIPE_PRODUCT_PAYMENT_LINK}
+                                        className={clsx("flex items-center text-white", {
+                                            "bg-purple-600 hover:bg-purple-500 active:bg-purple-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "purple",
+                                            "bg-blue-600 hover:bg-blue-500 active:bg-blue-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "blue",
+                                            "bg-green-600 hover:bg-green-500 active:bg-green-700" : process.env.NEXT_PUBLIC_TEMPLATE_THEME === "green",
+
+                                        })}
+                                    >
+                                        {process.env.NEXT_PUBLIC_FIRST_BUTTON_LABEL}
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                        </svg>
+                                    </NavLink>
+                                )}
                             </div>
                         )}
                     </div>
@@ -81,15 +128,29 @@ const Hero = () => (
                                 rgba={theme_selector(process.env.NEXT_PUBLIC_TEMPLATE_THEME).rgba}
                                 wrapperClassName="max-w-3xl h-[250px] top-12 inset-0 sm:h-[300px] lg:h-[650px]">
                                 {
-                                    /*
-                                        <Image
-                                            width={100}
-                                            height={100}
-                                            src={process.env.NEXT_PUBLIC_HERO_IMAGE_SOURCE}
-                                            className="shadow-lg rounded-2xl"
-                                            alt="Mailgo"
-                                        />
-                                    */
+                                    <>
+                                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                            <Tooltip content="Upload an image svg format inside the public folder named hero" trigger="click">
+                                                <Image
+                                                    width={1200}
+                                                    height={100}
+                                                    src={HeroImg}
+                                                    className="shadow-lg rounded-2xl"
+                                                    alt="Mailgo"
+                                                />
+                                            </Tooltip>
+                                        )}
+                                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                            <Image
+                                                width={1200}
+                                                height={100}
+                                                src={HeroImg}
+                                                className="shadow-lg rounded-2xl"
+                                                alt="Mailgo"
+                                            />
+                                        )}
+                                    </>
+                                    
                                 }
                             </GradientWrapper>
                         )

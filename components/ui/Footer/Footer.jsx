@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { Tooltip } from "flowbite-react"
+
 
 const Footer = () => {
 
@@ -8,7 +10,26 @@ const Footer = () => {
                 <footer className="mt-20">
                     <div className="custom-screen">
                         <div className="mt-10 py-8 border-t border-gray-800 items-center justify-between sm:flex">
-                            <p className="text-gray-400 text-center">© {process.env.NEXT_PUBLIC_FOOTER_YEAR} {process.env.NEXT_PUBLIC_FOOTER_COPYRIGHT}. All rights reserved.</p>
+                            <div className="text-gray-400 text-center flex gap-2">
+                                <span  className="inline-block">©</span> 
+                                {process.env.NEXT_PUBLIC_FOOTER_SHOW === "1" && (
+                                    <>
+                                        <Tooltip content="NEXT_PUBLIC_FOOTER_YEAR" trigger="click"> 
+                                            <span  className="inline-block">{process.env.NEXT_PUBLIC_FOOTER_YEAR}</span>
+                                        </Tooltip>
+                                        <Tooltip content="NEXT_PUBLIC_FOOTER_COPYRIGHT" trigger="click"> 
+                                            <span className="inline-block">{process.env.NEXT_PUBLIC_FOOTER_COPYRIGHT}</span>
+                                        </Tooltip>
+                                    </>
+                                )}
+                                {process.env.NEXT_PUBLIC_FOOTER_SHOW === "0" && (
+                                    <>
+                                        <span  className="inline-block">{process.env.NEXT_PUBLIC_FOOTER_YEAR}</span>
+                                        <span className="inline-block">{process.env.NEXT_PUBLIC_FOOTER_COPYRIGHT}</span>
+                                    </>
+                                )}
+                                <span className="inline-block">All rights reserved.</span>
+                            </div>
                             <div className="flex items-center justify-center gap-x-6 text-gray-500 mt-6 sm:mt-0">
                                 {process.env.NEXT_PUBLIC_FOOTER_FACEBOOK_SHOW === "1" && (
                                     <Link href={process.env.NEXT_PUBLIC_FOOTER_FACEBOOK_URL} target="_blank" aria-label="social media">

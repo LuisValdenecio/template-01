@@ -1,0 +1,12 @@
+<svg width="122" height="44" viewBox="0 0 122 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="22" cy="22" r="20" fill="#4CAF50" />
+  
+  <!-- Dynamic Icon -->
+  <path d="M20 15L26 22L20 29" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Company Name -->
+  <text x="40" y="28" fill="#333" font-family="Arial, sans-serif" font-size="18" font-weight="bold">
+    YourBrand
+  </text>
+</svg>

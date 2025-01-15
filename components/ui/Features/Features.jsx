@@ -1,5 +1,6 @@
 import LayoutEffect from "../../../components/LayoutEffect"
 import SectionWrapper from "../../../components/SectionWrapper"
+import { Tooltip } from "flowbite-react";
 
 const Features = () => {
 
@@ -71,16 +72,38 @@ const Features = () => {
                                 <div className="max-w-xl mx-auto text-center">
                                     {
                                         process.env.NEXT_PUBLIC_FEATURE_GRID_TITLE_SHOW === "1" && (
-                                            <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
-                                                {process.env.NEXT_PUBLIC_FEATURE_GRID_TITLE}
-                                            </h2>
+                                            <>
+                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                    <Tooltip content="NEXT_PUBLIC_FEATURE_GRID_TITLE" trigger="click">
+                                                        <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
+                                                            {process.env.NEXT_PUBLIC_FEATURE_GRID_TITLE}
+                                                        </h2>
+                                                    </Tooltip>
+                                                )}
+                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                    <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
+                                                        {process.env.NEXT_PUBLIC_FEATURE_GRID_TITLE}
+                                                    </h2>
+                                                )}
+                                            </>
                                         )
                                     }
                                     {
                                         process.env.NEXT_PUBLIC_FEATURE_GRID_DESCRIPTION_SHOW === "1" && (
-                                            <p className="mt-3">
-                                                {process.env.NEXT_PUBLIC_FEATURE_GRID_DESCRIPTION}
-                                            </p>
+                                            <>
+                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                    <Tooltip content="NEXT_PUBLIC_FEATURE_GRID_DESCRIPTION" trigger="click">
+                                                        <p className="mt-3">
+                                                            {process.env.NEXT_PUBLIC_FEATURE_GRID_DESCRIPTION}
+                                                        </p>
+                                                    </Tooltip>
+                                                )}
+                                                {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                    <p className="mt-3">
+                                                        {process.env.NEXT_PUBLIC_FEATURE_GRID_DESCRIPTION}
+                                                    </p>
+                                                )}
+                                            </>
                                         )   
                                     }
                                 </div>
@@ -108,12 +131,28 @@ const Features = () => {
                                                 <div className="w-12 h-12 font-extrabold text-xl flex items-center justify-center bg-gray-700 rounded-lg text-gray-50">
                                                    {idx + 1}
                                                 </div>
-                                                <h3 className="text-lg text-gray-50 font-semibold">
-                                                    {item.title}
-                                                </h3>
-                                                <p>
-                                                    {item.desc}
-                                                </p>
+                                                <>
+                                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                        <>
+                                                            <Tooltip content={`NEXT_PUBLIC_FEATURE_0${idx + 1}_TITLE`} trigger="click" >
+                                                                <h3 className="text-lg text-gray-50 font-semibold">
+                                                                    {item.title}
+                                                                </h3>
+                                                            </Tooltip>
+                                                            <Tooltip content={`NEXT_PUBLIC_FEATURE_0${idx + 1}_DESCRIPTION`} trigger="click" >
+                                                                <p>{item.desc}</p>
+                                                            </Tooltip>
+                                                        </>
+                                                    )}
+                                                    {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                        <>
+                                                            <h3 className="text-lg text-gray-50 font-semibold">
+                                                                {item.title}
+                                                            </h3>
+                                                            <p>{item.desc}</p>
+                                                        </>
+                                                    )}
+                                                </> 
                                             </li>
                                         ))
                                     }

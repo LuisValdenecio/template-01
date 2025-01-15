@@ -8,6 +8,8 @@ import user5 from "../../../public/testimonial/user5.webp"
 import user6 from "../../../public/testimonial/user6.webp"
 import Image from "next/image"
 import LayoutEffect from "../../../components/LayoutEffect"
+import { Tooltip } from "flowbite-react";
+
 
 const Testimonial = () => {
 
@@ -55,9 +57,18 @@ const Testimonial = () => {
             {process.env.NEXT_PUBLIC_TESTIMONIAL_SHOW === "1" && (
                 <div id="testimonials" className="custom-screen text-gray-300">
                     <div className="max-w-2xl text-center md:mx-auto">
-                        <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
-                            {process.env.NEXT_PUBLIC_TESTIMONIAL_TITLE}
-                        </h2>
+                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                            <Tooltip content="NEXT_PUBLIC_TESTIMONIAL_TITLE">
+                                <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
+                                    {process.env.NEXT_PUBLIC_TESTIMONIAL_TITLE}
+                                </h2>
+                            </Tooltip>  
+                        )}
+                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                            <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
+                                {process.env.NEXT_PUBLIC_TESTIMONIAL_TITLE}
+                            </h2> 
+                        )}
                     </div>
                     <GradientWrapper wrapperClassName="max-w-sm h-40 top-12 inset-x-0" className="mt-12">
                         <LayoutEffect
@@ -77,9 +88,31 @@ const Testimonial = () => {
                                         >
                                             <figure className="flex flex-col justify-between gap-y-6 h-full">
                                                 <blockquote className="">
-                                                    <p className="">
-                                                        {item.quote}
-                                                    </p>
+                                                    <>
+                                                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                            <>
+                                                                {idx <= 2 && (
+                                                                    <Tooltip content={`NEXT_PUBLIC_GRID_TESTIMONIAL_QUOTE_ROW01_COL0${idx+1}`} trigger="click">
+                                                                        <p className="">
+                                                                            {item.quote}
+                                                                        </p>
+                                                                    </Tooltip>
+                                                                )}
+                                                                {idx > 2 && (
+                                                                    <Tooltip content={`NEXT_PUBLIC_GRID_TESTIMONIAL_QUOTE_ROW02_COL0${idx-2}`} trigger="click">
+                                                                        <p className="">
+                                                                            {item.quote}
+                                                                        </p>
+                                                                    </Tooltip>
+                                                                )}
+                                                            </>
+                                                        )}
+                                                        {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                            <p className="">
+                                                                {item.quote}
+                                                            </p>
+                                                        )}
+                                                    </>
                                                 </blockquote>
                                                 <div className="flex items-center gap-x-4">
                                                     <Image
@@ -88,8 +121,39 @@ const Testimonial = () => {
                                                         className="w-14 h-14 rounded-full object-cover"
                                                     />
                                                     <div>
-                                                        <span className="block text-gray-50 font-semibold">{item.name}</span>
-                                                        <span className="block text-sm mt-0.5">{item.title}</span>
+                                                        <>
+                                                            {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "1" && (
+                                                                <>
+                                                                    {idx <= 2 && (
+                                                                        <>
+                                                                            <Tooltip content={`NEXT_PUBLIC_GRID_TESTIMONIAL_NAME_ROW01_COL0${idx+1}`} trigger="click">
+                                                                                <span className="block text-gray-50 font-semibold">{item.name}</span>
+                                                                            </Tooltip> 
+                                                                            <Tooltip content={`NEXT_PUBLIC_GRID_TESTIMONIAL_COMPANY_ROW01_COL0${idx+1}`} trigger="click">
+                                                                                <span className="block text-sm mt-0.5">{item.title}</span>
+                                                                            </Tooltip>          
+                                                                        </>
+                                                                    )}
+                                                                    {idx > 2 && (
+                                                                        <>
+                                                                            <Tooltip content={`NEXT_PUBLIC_GRID_TESTIMONIAL_NAME_ROW02_COL0${idx-2}`} trigger="click">
+                                                                                <span className="block text-gray-50 font-semibold">{item.name}</span>
+                                                                            </Tooltip>        
+                                                                            <Tooltip content={`NEXT_PUBLIC_GRID_TESTIMONIAL_COMPANY_ROW02_COL0${idx-2}`} trigger="click">
+                                                                                <span className="block text-sm mt-0.5">{item.title}</span>
+                                                                            </Tooltip>        
+                                                                        </>
+                                                                    )}
+                                                                </>
+                                                            )}
+                                                            {process.env.NEXT_PUBLIC_TOOLTIP_SHOW === "0" && (
+                                                                <>
+                                                                    <span className="block text-gray-50 font-semibold">{item.name}</span> 
+                                                                    <span className="block text-sm mt-0.5">{item.title}</span>
+                                                                </>
+                                                            )}
+                                                        </>
+
                                                     </div>
                                                 </div>
                                             </figure>
